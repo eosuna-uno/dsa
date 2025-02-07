@@ -13,7 +13,7 @@ function same(arr1: number[], arr2: number[]): boolean {
       map_squared.set(num, map_squared.get(num) - 1);
     }
   }
-  for (const [num, val] of map_squared) {
+  for (const [_num, val] of map_squared) {
     if (val != 0) return false;
   }
   return true;
