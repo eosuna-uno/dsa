@@ -9,6 +9,22 @@ function anagram(str1: string, str2: string): boolean {
   return true;
 }
 
+function less_size_anagram(str1: string, str2: string): boolean {
+  if (str1.length != str2.length) return false;
+  const map1 = strToMapCounter(str1);
+  for (const char of str2) {
+    const current_val = map1.get(char);
+    if (current_val) {
+      map1.set(char, current_val - 1);
+      if (current_val == 0) return false;
+    } else {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 function strToMapCounter(str: string): Map<string, number> {
   const return_map = new Map();
   for (const char of str) {
@@ -22,10 +38,10 @@ function strToMapCounter(str: string): Map<string, number> {
   return return_map;
 }
 
-assertEquals(anagram("", ""), true);
-assertEquals(anagram("aaz", "zaz"), false);
-assertEquals(anagram("anagram", "nagaram"), true);
-assertEquals(anagram("rat", "car"), false);
-assertEquals(anagram("awesome", "awesom"), false);
-assertEquals(anagram("qwerty", "qeywrt"), true);
-assertEquals(anagram("texttwisttime", "timetwisttext"), true);
+assertEquals(less_size_anagram("", ""), true);
+assertEquals(less_size_anagram("aaz1", "zaa1"), true);
+assertEquals(less_size_anagram("anagram", "nagaram"), true);
+assertEquals(less_size_anagram("rat", "car"), false);
+assertEquals(less_size_anagram("awesome", "awesom"), false);
+assertEquals(less_size_anagram("qwerty", "qeywrt"), true);
+assertEquals(less_size_anagram("texttwisttime", "timetwisttext"), true);
