@@ -48,7 +48,6 @@ function find_pivot_binary_search(arr: number[]): number {
     const middle = Math.floor((min_index + max_index) / 2);
 
     const result = arr[0] - arr[middle];
-
     //     ^--- on pivot this will always be negative number
     if (result > 0) {
       if (arr[middle] < arr[middle - 1]) return middle;
