@@ -26,7 +26,7 @@ function count_zeroes(arr: number[]) {
 Deno.test({
   name: "count zeroes",
   fn: () => {
-    assertEquals(count_zeroes([1, 1, 1, 1, 0, 0]), 1); // 2
+    assertEquals(count_zeroes([1, 1, 1, 1, 0, 0]), 2); // 2
     assertEquals(count_zeroes([1, 0, 0, 0, 0]), 4); // 4
     assertEquals(count_zeroes([0, 0, 0]), 3); // 3
     assertEquals(count_zeroes([1, 1, 1, 1]), 0); // 0*/
