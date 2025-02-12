@@ -1,7 +1,9 @@
 import { assertEquals } from "jsr:@std/assert/equals";
 
 function find_rotated_index(arr: number[], find: number): number {
-  const pivot_index = find_pivot(arr);
+  //const pivot_index = find_pivot(arr);
+  const pivot_index = find_pivot_binary_search(arr);
+
   let [min_index, max_index] = get_index_to_search(arr, find, pivot_index);
 
   while (min_index <= max_index) {
@@ -29,12 +31,35 @@ function get_index_to_search(
   }
 }
 
+//this is Time O(N), we need to update find pivot to  be a binary search too
 function find_pivot(arr: number[]): number {
   const previous_item = arr[0];
   for (let i = 1; i < arr.length; i++) {
     if (previous_item >= arr[i]) return i;
   }
   return NaN;
+}
+
+//in this case we're gonna use index_values - previous_index_value until number is negative
+function find_pivot_binary_search(arr: number[]): number {
+  let min_index = 0;
+  let max_index = arr.length - 1;
+  while (min_index <= max_index) {
+    const middle = Math.floor((min_index + max_index) / 2);
+
+    const result = arr[0] - arr[middle];
+
+    //     ^--- on pivot this will always be negative number
+    if (result > 0) {
+      if (arr[middle] < arr[middle - 1]) return middle;
+      max_index = middle - 1;
+    }
+    if (result < 0) {
+      min_index = middle + 1;
+    }
+  }
+
+  return 0;
 }
 
 Deno.test({
