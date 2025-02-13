@@ -14,7 +14,7 @@ function range(num: number): number {
   return (num * (1 + num)) / 2;
 }
 Deno.test({
-  name: "product of array",
+  name: "Recursive range",
   fn: () => {
     assertEquals(recursive_range(3), 6);
     assertEquals(recursive_range(4), 10);
