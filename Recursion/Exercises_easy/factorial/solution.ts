@@ -1,10 +1,12 @@
 import { assertEquals } from "jsr:@std/assert/equals";
 
 function factorial(num: number): number {
-  if (num == 1) return 1;
+  if (num < 0) return NaN;
+  if (num <= 1) return 1;
   return num * factorial(--num);
 }
 function factorial_big(num: bigint): bigint {
+  if (num < 0) return -1n;
   if (num == 1n) return 1n;
   return num * factorial_big(--num);
 }
@@ -12,6 +14,8 @@ function factorial_big(num: bigint): bigint {
 Deno.test({
   name: "Recursion power normal int",
   fn: () => {
+    assertEquals(factorial(-5), NaN);
+    assertEquals(factorial(0), 1);
     assertEquals(factorial(1), 1);
     assertEquals(factorial(2), 2);
     assertEquals(factorial(4), 24);
@@ -23,6 +27,10 @@ Deno.test({
 Deno.test({
   name: "Recursion power big int",
   fn: () => {
+    assertEquals(factorial_big(-5n), -1n);
+
+    assertEquals(factorial_big(0n), 1n);
+
     assertEquals(factorial_big(1n), 1n);
     assertEquals(factorial_big(2n), 2n);
     assertEquals(factorial_big(4n), 24n);
