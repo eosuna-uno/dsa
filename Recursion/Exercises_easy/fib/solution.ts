@@ -7,7 +7,7 @@ function fib(num: number): number {
   return fib(num - 1) + fib(num - 2);
 }
 Deno.test({
-  name: "product of array",
+  name: "recursion fib",
   fn: () => {
     assertEquals(fib(4), 3);
     assertEquals(fib(10), 55);
