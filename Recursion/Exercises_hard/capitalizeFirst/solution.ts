@@ -13,7 +13,7 @@ function capitalize_first(arr: string[]): string[] {
 }
 
 Deno.test({
-  name: "flatten array",
+  name: "capitalize first test",
   fn: () => {
     assertEquals(capitalize_first(["car", "taco", "banana"]), [
       "Car",
