@@ -1,6 +1,6 @@
 import { assertEquals } from "jsr:@std/assert/equals";
 
-function get_digit(number: number, place: number): number {
+export function get_digit(number: number, place: number): number {
   number = Math.abs(number);
   const num1 = Math.floor(number / 10 ** place);
   const num2 = Math.floor(number / 10 ** (place + 1)) * 10;
