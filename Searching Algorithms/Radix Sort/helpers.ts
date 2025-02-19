@@ -1,16 +1,20 @@
 import { assertEquals } from "jsr:@std/assert/equals";
 
 function get_digit(number: number, place: number): number {
+  number = Math.abs(number);
   const num1 = Math.floor(number / 10 ** place);
   const num2 = Math.floor(number / 10 ** (place + 1)) * 10;
   return num1 - num2;
 }
 //this is better because have less operations, a response from stack overflow,
 //still i did mine in 5 minutes
+//mine did twice the operations.2 divides, 2 pows 2 floors, 1 multiplication by 10, and 1 Math.abs
+//stack response did operations. 1 pow, 1 abs, 1 floor, and 2 divs (1 division and 1 modulo)
+//and mine did not work with negative numbers (something that i fixed adding the Math.abs)
 function getDigit(num: number, i: number): number {
   return Math.floor(Math.abs(num) / Math.pow(10, i)) % 10;
 }
-assertEquals(get_digit(12345, 1), 4);
+assertEquals(get_digit(-12345, 1), 4);
 assertEquals(get_digit(12345, 0), 5);
 
 assertEquals(get_digit(12345, 3), 2);
